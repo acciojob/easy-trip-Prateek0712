@@ -122,17 +122,20 @@ public class AirportRepository {
         {
             return "FAILURE";
         }
-        if(flightData.get(fid).contains(pid)==false)
+        else if(flightData.get(fid).contains(pid)==false)
         {
             return "FAILURE";
+        }
+        else
+        {
+            flightData.get(fid).remove(pid);
+            passengerData.get(pid).remove(fid);
+            return "SUCCESS";
         }
         /*if(passengerData.get(pid).contains(fid)==false)  //change after 2nd Attempt this if  condition is commented  out
         {
             return "FAILURE";
         }*/
-        passengerData.get(pid).remove(fid);
-        flightData.get(fid).remove(pid);
-        return "SUCCESS";
     }
     public String getTakeOffAirportNameByFlightId(int fid)
     {
