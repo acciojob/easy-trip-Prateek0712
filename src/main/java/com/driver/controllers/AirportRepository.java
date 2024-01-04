@@ -126,10 +126,10 @@ public class AirportRepository {
         {
             return "FAILURE";
         }
-        if(passengerData.get(pid).contains(fid)==false)
+        /*if(passengerData.get(pid).contains(fid)==false)  //change after 2nd Attempt this if  condition is commented  out
         {
             return "FAILURE";
-        }
+        }*/
         passengerData.get(pid).remove(fid);
         flightData.get(fid).remove(pid);
         return "SUCCESS";
