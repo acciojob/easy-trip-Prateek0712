@@ -79,22 +79,17 @@ public class AirportRepository {
         }
     }
 
-    public double getShortestTimeTravelBetweenCities(City from, City to)
+    public double getShortestTimeTravelBetweenCities(City fromCity, City toCity)
     {
-        if(flightMap.size()==0)
-        {
-            return -1;
-        }
+        if(flightMap.size()==0)return -1;
         double time=Double.MAX_VALUE;
-        for(int id:flightMap.keySet())
-        {
-            if(flightMap.get(id).getFromCity().equals(from) && flightMap.get(id).getFromCity().equals(to))
-            {
-                time=Math.min(time,flightMap.get(id).getDuration());
+        for(Flight flight:flightMap.values()){
+            if(flight.getFromCity().equals(fromCity) && flight.getToCity().equals(toCity)){
+                if(flight.getDuration()<time)time=flight.getDuration();
             }
         }
-        if(time==Double.MAX_VALUE) return -1;
-        return time;
+        if(time==Double.MAX_VALUE)return -1;
+        else return time;
     }
 
     /* <----------------------PUT---------------> */
@@ -152,7 +147,7 @@ public class AirportRepository {
         }
         return 3000+(flightData.get(fid).size()*50);
     }
-    public int getNumberOfPeople(Date date,String apName)
+    public int getNumberOfPeople(Date date,String apName) throws Exception
     {
         if (flightData.size() == 0 || flightMap.size() == 0 || airportMap.size() == 0) return 0;
         int numberOfPeople = 0;
@@ -176,8 +171,12 @@ public class AirportRepository {
     }
     public int calcRevenue(int fid)
     {
-        if(flightData.containsKey(fid)==true)
-            return 3000+(flightData.get(fid).size()*50);
-        else return 0;
+        int totalRevenue=0;
+        if(flightData.containsKey(fid)==true) {
+            for (int i = 0; i < flightData.get(fid).size(); i++) {
+                totalRevenue += 3000 + (i * 50);
+            }
+        }
+        return totalRevenue;
     }
 }

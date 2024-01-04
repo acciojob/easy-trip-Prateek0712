@@ -42,7 +42,14 @@ public class AirportService {
         }
     public int getNumberOfPeople(Date date,String  apName)
     {
-        return apR.getNumberOfPeople(date,apName);
+        try {
+            return apR.getNumberOfPeople(date,apName);
+        }
+        catch (Exception e)
+        {
+            //throw new RuntimeException();
+            return 0;
+        }
     }
     public int getBookingCount(int pid)
     {
