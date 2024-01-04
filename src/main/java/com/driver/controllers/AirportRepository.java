@@ -123,10 +123,11 @@ public class AirportRepository {
         }else if(flightData.get(fid).contains(pid)==false){ //checking for space availability
             return "FAILURE";
         }else{
-            flightData.get(fid).remove(pid);
-            passengerData.get(pid).remove(fid);
+            int p1=passengerData.get(pid).indexOf(fid);
+            passengerData.get(pid).remove(p1);
+            int f1=flightData.get(fid).indexOf(pid);
+            flightData.get(pid).remove(f1);
             return "SUCCESS";
-
         }
 
     }
