@@ -118,24 +118,17 @@ public class AirportRepository {
     }
     public String cancelTicket(int fid,int pid)
     {
-        if(flightMap.containsKey(fid)==false || passengerMap.containsKey(pid)==false)
-        {
+        if(flightData.containsKey(fid)==false||passengerData.containsKey(pid)==false){ //checking for a valid flightId and passengerId
             return "FAILURE";
-        }
-        else if(flightData.get(fid).contains(pid)==false)
-        {
+        }else if(flightData.get(fid).contains(pid)==false){ //checking for space availability
             return "FAILURE";
-        }
-        else
-        {
+        }else{
             flightData.get(fid).remove(pid);
             passengerData.get(pid).remove(fid);
             return "SUCCESS";
+
         }
-        /*if(passengerData.get(pid).contains(fid)==false)  //change after 2nd Attempt this if  condition is commented  out
-        {
-            return "FAILURE";
-        }*/
+
     }
     public String getTakeOffAirportNameByFlightId(int fid)
     {
