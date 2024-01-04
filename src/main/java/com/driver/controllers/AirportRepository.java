@@ -108,7 +108,7 @@ public class AirportRepository {
         {
             return "FAILURE";
         }
-        if(flightData.get(fid).contains(pid)==false)
+        if(flightData.get(fid).contains(pid)==true) // change in 2nd  attempt false to true
         {
             return "FAILURE";
         }
